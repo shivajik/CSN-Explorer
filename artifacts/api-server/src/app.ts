@@ -5,7 +5,7 @@ import { logger } from "./lib/logger";
 
 const app = express();
 
-app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((req: any, res: any, next: any) => {
   const start = Date.now();
   res.on("finish", () => {
     logger.info({
@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", ((_req: express.Request, res: express.Response) => {
+app.get("/", (_req: any, res: any) => {
   res.json({
     name: "CSN Explorer API",
     version: "1.0.0",
@@ -35,7 +35,7 @@ app.get("/", ((_req: express.Request, res: express.Response) => {
       "POST /api/inquiries",
     ],
   });
-}) as express.RequestHandler);
+});
 
 app.use("/api", router);
 

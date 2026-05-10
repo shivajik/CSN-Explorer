@@ -1,5 +1,4 @@
 import { Router } from "express";
-import type express from "express";
 
 const router = Router();
 
@@ -11,16 +10,16 @@ const tours = [
   { id: 5, name: "Grishneshwar Temple", category: "temple", description: "One of the 12 Jyotirlinga shrines dedicated to Lord Shiva.", location: "Verul, near Ellora", duration: "2 hours", highlights: ["12th Jyotirlinga shrine"], imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Grishneshwar_temple_in_Aurangabad_district.jpg", featured: true, rating: 4.7, price: 0 },
 ];
 
-router.get("/tours", (_req: express.Request, res: express.Response) => {
+router.get("/tours", (_req: any, res: any) => {
   res.json(tours);
 });
 
-router.get("/tours/featured", (_req: express.Request, res: express.Response) => {
+router.get("/tours/featured", (_req: any, res: any) => {
   res.json(tours.filter((t) => t.featured));
 });
 
-router.get("/tours/:id", (req: express.Request, res: express.Response) => {
-  const id = Number(req.params["id"]);
+router.get("/tours/:id", (req: any, res: any) => {
+  const id = Number(req.params.id);
   const tour = tours.find((t) => t.id === id);
   if (!tour) {
     res.status(404).json({ error: "Tour not found" });

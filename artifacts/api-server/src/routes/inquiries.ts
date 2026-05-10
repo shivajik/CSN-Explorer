@@ -1,10 +1,9 @@
 import { Router } from "express";
-import type express from "express";
 import { logger } from "../lib/logger";
 
 const router = Router();
 
-router.post("/inquiries", (req: express.Request, res: express.Response) => {
+router.post("/inquiries", (req: any, res: any) => {
   const { name, email, phone } = req.body ?? {};
   if (!name || !email || !phone) {
     res.status(400).json({ error: "name, email, and phone are required" });

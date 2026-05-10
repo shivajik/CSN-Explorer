@@ -1,5 +1,4 @@
 import { Router } from "express";
-import type express from "express";
 
 const router = Router();
 
@@ -11,7 +10,7 @@ const transportOptions = [
   { id: 5, from: "Pune", to: "Chhatrapati Sambhajinagar", vehicleType: "SUV", capacity: 6, pricePerPerson: 1100, duration: "4-5 hours" },
 ];
 
-router.get("/transport", (_req: express.Request, res: express.Response) => {
+router.get("/transport", (_req: any, res: any) => {
   res.json(transportOptions);
 });
 
