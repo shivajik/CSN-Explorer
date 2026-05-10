@@ -10,7 +10,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2 mb-6">
               <Compass className="w-8 h-8 text-primary" />
               <span className="font-serif font-bold text-xl tracking-tight">
-                Aurangabad Explorer
+                Sambhajinagar Explorer
               </span>
             </Link>
             <p className="text-muted-foreground mb-6 leading-relaxed">
@@ -54,7 +54,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-muted-foreground">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <span>Station Road, Near Central Bus Stand, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431001</span>
+                <span>Station Road, Near Central Bus Stand, Chhatrapati Sambhajinagar, Maharashtra 431001</span>
               </li>
               <li className="flex items-center gap-3 text-muted-foreground">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
@@ -69,7 +69,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-border/50 text-center text-muted-foreground text-sm flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>&copy; {new Date().getFullYear()} Aurangabad Explorer. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Sambhajinagar Explorer. All rights reserved.</p>
           <p>Crafted with intention for premium travelers.</p>
         </div>
       </div>

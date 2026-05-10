@@ -8,7 +8,7 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-foreground">Contact & Booking</h1>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Ready to explore the wonders of Aurangabad? Send us your requirements, and our team will craft the perfect itinerary for you.
+            Ready to explore the wonders of Chhatrapati Sambhajinagar? Send us your requirements, and our team will craft the perfect itinerary for you.
           </p>
         </div>
 
@@ -46,7 +46,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-lg mb-1">Office</h4>
-                    <p className="text-muted-foreground">Station Road, Near Central Bus Stand, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431001</p>
+                    <p className="text-muted-foreground">Station Road, Near Central Bus Stand, Chhatrapati Sambhajinagar, Maharashtra 431001</p>
                   </div>
                 </div>
               </div>

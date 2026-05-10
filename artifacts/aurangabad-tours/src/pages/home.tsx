@@ -98,7 +98,7 @@ export default function Home() {
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-serif font-bold text-xl mb-1">Mumbai to Aurangabad</h3>
+                    <h3 className="font-serif font-bold text-xl mb-1">Mumbai to Chhatrapati Sambhajinagar</h3>
                     <p className="text-muted-foreground">Approx. 335 km | Fast travel via Samruddhi Expressway</p>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ export default function Home() {
                     <Navigation className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-serif font-bold text-xl mb-1">Pune to Aurangabad</h3>
+                    <h3 className="font-serif font-bold text-xl mb-1">Pune to Chhatrapati Sambhajinagar</h3>
                     <p className="text-muted-foreground">Approx. 235 km | Scenic route through Ahmednagar</p>
                   </div>
                 </div>

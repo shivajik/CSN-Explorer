@@ -156,7 +156,7 @@ export function ContactForm({ defaultTourId, defaultTourName, onSuccess }: Conta
                   <SelectContent>
                     <SelectItem value="Mumbai">Mumbai (via Samruddhi Mahamarg)</SelectItem>
                     <SelectItem value="Pune">Pune</SelectItem>
-                    <SelectItem value="Aurangabad">Aurangabad (Local)</SelectItem>
+                    <SelectItem value="Chhatrapati Sambhajinagar">Chhatrapati Sambhajinagar (Local)</SelectItem>
                     <SelectItem value="Other">Other</SelectItem>
                   </SelectContent>
                 </Select>

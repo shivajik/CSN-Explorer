@@ -37,7 +37,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2 group" data-testid="nav-logo">
             <Compass className={cn("w-8 h-8 transition-colors", isScrolled ? "text-primary" : "text-primary md:text-white")} />
             <span className={cn("font-serif font-bold text-xl tracking-tight transition-colors", isScrolled ? "text-foreground" : "text-foreground md:text-white")}>
-              Aurangabad Explorer
+              Sambhajinagar Explorer
             </span>
           </Link>
 

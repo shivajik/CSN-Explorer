@@ -14,7 +14,7 @@ export default function TransportPage() {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-foreground">Transport Services</h1>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Comfortable, reliable, and premium transportation from major cities directly to your historical destinations in Aurangabad.
+            Comfortable, reliable, and premium transportation from major cities directly to your historical destinations in Chhatrapati Sambhajinagar.
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export default function TransportPage() {
             <div className="bg-primary/5 rounded-3xl p-8 border border-primary/10 sticky top-32">
               <h3 className="text-2xl font-serif font-bold mb-4 text-foreground">Need Custom Transport?</h3>
               <p className="text-muted-foreground mb-8">
-                We also offer local sightseeing vehicles within Aurangabad, multi-day transport, and large group bookings. Get in touch to customize your travel.
+                We also offer local sightseeing vehicles within Chhatrapati Sambhajinagar, multi-day transport, and large group bookings. Get in touch to customize your travel.
               </p>
               
               <ul className="space-y-4 mb-8">
