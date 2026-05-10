@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { ArrowRight, MapPin, Navigation, Car, Star, ChevronDown } from "lucide-react";
-import { useListFeaturedTours } from "@workspace/api-client-react";
+import { featuredTours } from "@/data/tours";
 import { TourCard } from "@/components/tours/TourCard";
 import { Button } from "@/components/ui/button";
 import { PageSeo } from "@/components/seo/PageSeo";
@@ -25,7 +25,7 @@ const homeFaqSchema = {
       "name": "How to travel from Mumbai to Chhatrapati Sambhajinagar?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Mumbai to Chhatrapati Sambhajinagar (Aurangabad) is approximately 335 km. The fastest route is via the Samruddhi Mahamarg Expressway, which takes about 5 to 6 hours by road. Sambhajinagar Explorer offers sedan, SUV, Tempo Traveller, and luxury coach pickup services from Mumbai starting at ₹750 per person. You can also reach by train (Devagiri Express) or flight to Aurangabad Airport."
+        "text": "Mumbai to Chhatrapati Sambhajinagar (Aurangabad) is approximately 335 km. The fastest route is via the Samruddhi Mahamarg Expressway, which takes about 5 to 6 hours by road. Sambhajinagar Explorer offers sedan, SUV, Tempo Traveller, and luxury coach pickup services from Mumbai starting at ₹750 per person."
       }
     },
     {
@@ -65,7 +65,7 @@ const homeFaqSchema = {
       "name": "What is Bibi Ka Maqbara?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bibi Ka Maqbara, often called the 'Taj of the Deccan' or 'Poor Man's Taj', is a Mughal mausoleum built in 1678 CE by Prince Azam Shah in memory of his mother, Dilras Banu Begum (also known as Rabia-ud-Daurani), the wife of Emperor Aurangzeb. Located in Chhatrapati Sambhajinagar, it closely resembles the Taj Mahal in Agra in its architectural style and is the most prominent Mughal monument in the Deccan region."
+        "text": "Bibi Ka Maqbara, often called the 'Taj of the Deccan' or 'Poor Man's Taj', is a Mughal mausoleum built in 1678 CE by Prince Azam Shah in memory of his mother, Dilras Banu Begum, the wife of Emperor Aurangzeb. Located in Chhatrapati Sambhajinagar, it closely resembles the Taj Mahal in Agra in its architectural style and is the most prominent Mughal monument in the Deccan region."
       }
     }
   ]
@@ -79,21 +79,21 @@ const homeSchema = {
   "url": `${SITE_URL}/tours`,
   "numberOfItems": 15,
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Ajanta Caves", "url": `${SITE_URL}/tours/1`, "description": "UNESCO World Heritage Site — 30 Buddhist rock-cut caves with ancient paintings, 2nd century BCE" },
-    { "@type": "ListItem", "position": 2, "name": "Ellora Caves", "url": `${SITE_URL}/tours/2`, "description": "UNESCO World Heritage Site — 34 caves representing Buddhism, Hinduism, and Jainism" },
-    { "@type": "ListItem", "position": 3, "name": "Daulatabad Fort", "url": `${SITE_URL}/tours/3`, "description": "900-year-old impregnable fort atop a 200-metre hill" },
-    { "@type": "ListItem", "position": 4, "name": "Bibi Ka Maqbara", "url": `${SITE_URL}/tours/4`, "description": "Mughal mausoleum — the Taj of the Deccan, built 1678 CE" },
-    { "@type": "ListItem", "position": 5, "name": "Grishneshwar Temple", "url": `${SITE_URL}/tours/5`, "description": "One of the 12 sacred Jyotirlinga shrines of Lord Shiva" },
-    { "@type": "ListItem", "position": 6, "name": "Panchakki", "url": `${SITE_URL}/tours/6`, "description": "17th-century water mill and Sufi heritage complex" },
-    { "@type": "ListItem", "position": 7, "name": "Aurangabad Caves", "url": `${SITE_URL}/tours/7`, "description": "Ancient Buddhist rock-cut caves with Tantric art, 3rd–7th century CE" },
-    { "@type": "ListItem", "position": 8, "name": "Soneri Mahal", "url": `${SITE_URL}/tours/8`, "description": "17th-century Nizam palace with golden frescoes" },
-    { "@type": "ListItem", "position": 9, "name": "Siddharth Garden", "url": `${SITE_URL}/tours/9`, "description": "21-acre city garden and zoo with musical fountain" },
-    { "@type": "ListItem", "position": 10, "name": "Jayakwadi Dam", "url": `${SITE_URL}/tours/10`, "description": "Largest dam in Maharashtra on the Godavari River" },
-    { "@type": "ListItem", "position": 11, "name": "Mhaismal Hill Station", "url": `${SITE_URL}/tours/11`, "description": "Scenic hill station at 900m altitude with Sahyadri views" },
-    { "@type": "ListItem", "position": 12, "name": "Bhadra Maruti Temple", "url": `${SITE_URL}/tours/12`, "description": "Rare reclining Hanuman temple — one of only 3 in India" },
-    { "@type": "ListItem", "position": 13, "name": "Goga Baba Hill", "url": `${SITE_URL}/tours/13`, "description": "Panoramic hilltop with 360-degree city views and Sufi dargah" },
-    { "@type": "ListItem", "position": 14, "name": "Salim Ali Lake", "url": `${SITE_URL}/tours/14`, "description": "Migratory bird sanctuary and peaceful lakeside retreat" },
-    { "@type": "ListItem", "position": 15, "name": "Khuldabad", "url": `${SITE_URL}/tours/15`, "description": "Valley of Saints — tomb of Emperor Aurangzeb and Sufi shrines" }
+    { "@type": "ListItem", "position": 1, "name": "Ajanta Caves", "url": `${SITE_URL}/tours/1` },
+    { "@type": "ListItem", "position": 2, "name": "Ellora Caves", "url": `${SITE_URL}/tours/2` },
+    { "@type": "ListItem", "position": 3, "name": "Daulatabad Fort", "url": `${SITE_URL}/tours/3` },
+    { "@type": "ListItem", "position": 4, "name": "Bibi Ka Maqbara", "url": `${SITE_URL}/tours/4` },
+    { "@type": "ListItem", "position": 5, "name": "Grishneshwar Temple", "url": `${SITE_URL}/tours/5` },
+    { "@type": "ListItem", "position": 6, "name": "Panchakki", "url": `${SITE_URL}/tours/6` },
+    { "@type": "ListItem", "position": 7, "name": "Aurangabad Caves", "url": `${SITE_URL}/tours/7` },
+    { "@type": "ListItem", "position": 8, "name": "Soneri Mahal", "url": `${SITE_URL}/tours/8` },
+    { "@type": "ListItem", "position": 9, "name": "Siddharth Garden", "url": `${SITE_URL}/tours/9` },
+    { "@type": "ListItem", "position": 10, "name": "Jayakwadi Dam", "url": `${SITE_URL}/tours/10` },
+    { "@type": "ListItem", "position": 11, "name": "Mhaismal Hill Station", "url": `${SITE_URL}/tours/11` },
+    { "@type": "ListItem", "position": 12, "name": "Bhadra Maruti Temple", "url": `${SITE_URL}/tours/12` },
+    { "@type": "ListItem", "position": 13, "name": "Goga Baba Hill", "url": `${SITE_URL}/tours/13` },
+    { "@type": "ListItem", "position": 14, "name": "Salim Ali Lake", "url": `${SITE_URL}/tours/14` },
+    { "@type": "ListItem", "position": 15, "name": "Khuldabad", "url": `${SITE_URL}/tours/15` },
   ]
 };
 
@@ -125,7 +125,6 @@ const faqs = [
 ];
 
 export default function Home() {
-  const { data: featuredTours, isLoading } = useListFeaturedTours();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -187,19 +186,11 @@ export default function Home() {
               </p>
             </div>
 
-            {isLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="rounded-xl bg-muted/50 animate-pulse h-[400px]" aria-hidden="true" />
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {featuredTours?.slice(0, 6).map((tour) => (
-                  <TourCard key={tour.id} tour={tour} />
-                ))}
-              </div>
-            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredTours.map((tour) => (
+                <TourCard key={tour.id} tour={tour} />
+              ))}
+            </div>
 
             <div className="mt-16 text-center">
               <Link href="/tours">

@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useListTours } from "@workspace/api-client-react";
+import { tours } from "@/data/tours";
 import { TourCard } from "@/components/tours/TourCard";
 import { Button } from "@/components/ui/button";
 import { PageSeo } from "@/components/seo/PageSeo";
@@ -23,18 +23,17 @@ const toursPageSchema = {
 };
 
 export default function ToursPage() {
-  const { data: tours = [], isLoading } = useListTours();
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
   const categories = useMemo(() => {
     const cats = new Set(tours.map(t => t.category));
     return ["All", ...Array.from(cats)].sort();
-  }, [tours]);
+  }, []);
 
   const filteredTours = useMemo(() => {
     if (activeCategory === "All") return tours;
     return tours.filter(t => t.category === activeCategory);
-  }, [tours, activeCategory]);
+  }, [activeCategory]);
 
   return (
     <>
@@ -86,23 +85,15 @@ export default function ToursPage() {
             ))}
           </div>
 
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="rounded-xl bg-muted/50 animate-pulse h-[400px]" aria-hidden="true" />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label={`${activeCategory === "All" ? "All" : activeCategory} tourist places`}>
-              {filteredTours.map((tour) => (
-                <div key={tour.id} role="listitem">
-                  <TourCard tour={tour} />
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label={`${activeCategory === "All" ? "All" : activeCategory} tourist places`}>
+            {filteredTours.map((tour) => (
+              <div key={tour.id} role="listitem">
+                <TourCard tour={tour} />
+              </div>
+            ))}
+          </div>
 
-          {!isLoading && filteredTours.length === 0 && (
+          {filteredTours.length === 0 && (
             <div className="text-center py-20">
               <h3 className="text-2xl font-serif font-medium text-muted-foreground">No places found for this category.</h3>
             </div>

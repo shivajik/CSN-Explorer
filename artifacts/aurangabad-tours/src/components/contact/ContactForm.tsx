@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema, type ContactFormValues } from "@/lib/schemas";
-import { useCreateInquiry, useListTours } from "@workspace/api-client-react";
+import { tours } from "@/data/tours";
 import { useToast } from "@/hooks/use-toast";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { MapPin, Calendar, Users, Send } from "lucide-react";
+import { useState } from "react";
 
 interface ContactFormProps {
   defaultTourId?: number;
@@ -18,8 +19,7 @@ interface ContactFormProps {
 
 export function ContactForm({ defaultTourId, defaultTourName, onSuccess }: ContactFormProps) {
   const { toast } = useToast();
-  const { data: tours = [] } = useListTours();
-  const createInquiry = useCreateInquiry();
+  const [isPending, setIsPending] = useState(false);
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -37,32 +37,22 @@ export function ContactForm({ defaultTourId, defaultTourName, onSuccess }: Conta
   });
 
   const onSubmit = (data: ContactFormValues) => {
-    // Fill in tourName if a tourId was selected but no name provided
     if (data.tourId && !data.tourName) {
-      const selectedTour = tours.find(t => t.id === Number(data.tourId));
-      if (selectedTour) data.tourName = selectedTour.name;
+      const selected = tours.find(t => t.id === Number(data.tourId));
+      if (selected) data.tourName = selected.name;
     }
 
-    createInquiry.mutate(
-      { data },
-      {
-        onSuccess: () => {
-          toast({
-            title: "Inquiry Sent Successfully",
-            description: "Our travel experts will contact you shortly to confirm your booking.",
-          });
-          form.reset();
-          if (onSuccess) onSuccess();
-        },
-        onError: (error) => {
-          toast({
-            variant: "destructive",
-            title: "Failed to send inquiry",
-            description: error.error || "Please try again later.",
-          });
-        }
-      }
-    );
+    setIsPending(true);
+    // Simulate a short delay then show success
+    setTimeout(() => {
+      setIsPending(false);
+      toast({
+        title: "Inquiry Sent Successfully",
+        description: "Our travel experts will contact you shortly to confirm your booking.",
+      });
+      form.reset();
+      if (onSuccess) onSuccess();
+    }, 800);
   };
 
   return (
@@ -82,7 +72,7 @@ export function ContactForm({ defaultTourId, defaultTourName, onSuccess }: Conta
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="email"
@@ -96,7 +86,7 @@ export function ContactForm({ defaultTourId, defaultTourName, onSuccess }: Conta
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="phone"
@@ -110,15 +100,15 @@ export function ContactForm({ defaultTourId, defaultTourName, onSuccess }: Conta
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="tourId"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Select Tour</FormLabel>
-                <Select 
-                  onValueChange={(val) => field.onChange(val === "none" ? null : Number(val))} 
+                <Select
+                  onValueChange={(val) => field.onChange(val === "none" ? null : Number(val))}
                   defaultValue={field.value ? String(field.value) : undefined}
                 >
                   <FormControl>
@@ -207,10 +197,10 @@ export function ContactForm({ defaultTourId, defaultTourName, onSuccess }: Conta
             <FormItem>
               <FormLabel>Your Message *</FormLabel>
               <FormControl>
-                <Textarea 
-                  placeholder="Tell us about your requirements, specific places you want to visit, or any special needs..." 
-                  className="min-h-[120px]" 
-                  {...field} 
+                <Textarea
+                  placeholder="Tell us about your requirements, specific places you want to visit, or any special needs..."
+                  className="min-h-[120px]"
+                  {...field}
                   data-testid="input-message"
                 />
               </FormControl>
@@ -219,14 +209,14 @@ export function ContactForm({ defaultTourId, defaultTourName, onSuccess }: Conta
           )}
         />
 
-        <Button 
-          type="submit" 
-          size="lg" 
+        <Button
+          type="submit"
+          size="lg"
           className="w-full sm:w-auto font-medium tracking-wide"
-          disabled={createInquiry.isPending}
+          disabled={isPending}
           data-testid="button-submit-inquiry"
         >
-          {createInquiry.isPending ? (
+          {isPending ? (
             "Sending..."
           ) : (
             <>

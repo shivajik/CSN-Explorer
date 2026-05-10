@@ -1,4 +1,4 @@
-import { useListTransportOptions } from "@workspace/api-client-react";
+import { transportOptions } from "@/data/transport";
 import { Car, MapPin, Users, IndianRupee, Clock, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,9 +15,7 @@ const transportSchema = {
   "name": "Mumbai & Pune to Chhatrapati Sambhajinagar Transport Service",
   "description": "Premium cab and coach pickup and drop services between Mumbai, Pune, and Chhatrapati Sambhajinagar (Aurangabad). Sedan, SUV, Tempo Traveller, and Luxury Coach options available.",
   "url": `${SITE_URL}/transport`,
-  "provider": {
-    "@id": `${SITE_URL}/#business`
-  },
+  "provider": { "@id": `${SITE_URL}/#business` },
   "serviceType": "Transportation",
   "areaServed": [
     { "@type": "City", "name": "Mumbai" },
@@ -39,8 +37,6 @@ const transportSchema = {
 };
 
 export default function TransportPage() {
-  const { data: transportOptions = [], isLoading } = useListTransportOptions();
-
   return (
     <>
       <PageSeo
@@ -74,75 +70,67 @@ export default function TransportPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-
             <div className="lg:col-span-2">
               <h2 className="text-2xl font-serif font-bold mb-8 flex items-center gap-3">
                 <Car className="text-primary w-8 h-8" aria-hidden="true" />
                 Available Routes &amp; Vehicles
               </h2>
 
-              {isLoading ? (
-                <div className="space-y-6">
-                  {[1, 2, 3].map(i => (
-                    <div key={i} className="h-48 bg-muted/50 animate-pulse rounded-2xl" aria-hidden="true" />
-                  ))}
-                </div>
-              ) : (
-                <div className="space-y-6">
-                  {transportOptions.map((option) => (
-                    <Card
-                      key={option.id}
-                      className="overflow-hidden border-border/50 hover:shadow-lg transition-all"
-                      data-testid={`transport-card-${option.id}`}
-                      itemScope
-                      itemType="https://schema.org/TaxiService"
-                    >
-                      <CardHeader className="bg-muted/30 border-b border-border/30 pb-4">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                          <div className="flex items-center gap-3">
-                            <MapPin className="w-5 h-5 text-primary" aria-hidden="true" />
-                            <CardTitle className="text-xl font-serif" itemProp="name">
-                              <span itemProp="serviceArea">{option.from}</span>
-                              <ArrowRight className="inline-block w-4 h-4 mx-2 text-muted-foreground" aria-hidden="true" />
-                              <span>{option.to}</span>
-                            </CardTitle>
-                          </div>
-                          <Badge variant="secondary" className="w-fit text-base px-4 py-1 font-medium bg-background text-foreground shadow-sm">
-                            {option.vehicleType}
-                          </Badge>
+              <div className="space-y-6">
+                {transportOptions.map((option) => (
+                  <Card
+                    key={option.id}
+                    className="overflow-hidden border-border/50 hover:shadow-lg transition-all"
+                    data-testid={`transport-card-${option.id}`}
+                    itemScope
+                    itemType="https://schema.org/TaxiService"
+                  >
+                    <CardHeader className="bg-muted/30 border-b border-border/30 pb-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <MapPin className="w-5 h-5 text-primary" aria-hidden="true" />
+                          <CardTitle className="text-xl font-serif" itemProp="name">
+                            <span itemProp="serviceArea">{option.from}</span>
+                            <ArrowRight className="inline-block w-4 h-4 mx-2 text-muted-foreground" aria-hidden="true" />
+                            <span>{option.to}</span>
+                          </CardTitle>
                         </div>
-                      </CardHeader>
-                      <CardContent className="pt-6">
+                        <Badge variant="secondary" className="w-fit text-base px-4 py-1 font-medium bg-background text-foreground shadow-sm">
+                          {option.vehicleType}
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-6">
+                      {option.description && (
                         <p className="text-muted-foreground mb-6" itemProp="description">
-                          {option.description || `Premium travel from ${option.from} to ${option.to} via ${option.vehicleType}.`}
+                          {option.description}
                         </p>
-
-                        <div className="flex flex-wrap gap-x-8 gap-y-4">
-                          <div className="flex items-center gap-2 text-foreground font-medium">
-                            <Clock className="w-5 h-5 text-primary" aria-hidden="true" />
-                            <span>{option.duration} Approx</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-foreground font-medium">
-                            <Users className="w-5 h-5 text-primary" aria-hidden="true" />
-                            <span>Upto {option.capacity} Passengers</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-foreground font-medium">
-                            <IndianRupee className="w-5 h-5 text-primary" aria-hidden="true" />
-                            <span itemProp="priceRange">₹{option.pricePerPerson} / person</span>
-                          </div>
+                      )}
+                      <div className="flex flex-wrap gap-x-8 gap-y-4">
+                        <div className="flex items-center gap-2 text-foreground font-medium">
+                          <Clock className="w-5 h-5 text-primary" aria-hidden="true" />
+                          <span>{option.duration} Approx</span>
                         </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              )}
+                        <div className="flex items-center gap-2 text-foreground font-medium">
+                          <Users className="w-5 h-5 text-primary" aria-hidden="true" />
+                          <span>Upto {option.capacity} Passengers</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-foreground font-medium">
+                          <IndianRupee className="w-5 h-5 text-primary" aria-hidden="true" />
+                          <span itemProp="priceRange">₹{option.pricePerPerson} / person</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
 
             <aside className="lg:col-span-1">
               <div className="bg-primary/5 rounded-3xl p-8 border border-primary/10 sticky top-32">
                 <h3 className="text-2xl font-serif font-bold mb-4 text-foreground">Need Custom Transport?</h3>
                 <p className="text-muted-foreground mb-8">
-                  We also offer local sightseeing vehicles within Chhatrapati Sambhajinagar, multi-day transport packages, and large group bookings. Get in touch to customize your travel.
+                  We also offer local sightseeing vehicles within Chhatrapati Sambhajinagar, multi-day transport packages, and large group bookings.
                 </p>
 
                 <ul className="space-y-4 mb-8" aria-label="Transport features">
@@ -173,7 +161,6 @@ export default function TransportPage() {
                 </p>
               </div>
             </aside>
-
           </div>
         </div>
       </div>

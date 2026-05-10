@@ -1,5 +1,5 @@
 import { useParams, Link } from "wouter";
-import { useGetTour, getGetTourQueryKey } from "@workspace/api-client-react";
+import { getTourById } from "@/data/tours";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { MapPin, Clock, Star, Tag, ChevronRight, Map, Home } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -8,24 +8,20 @@ import { PageSeo } from "@/components/seo/PageSeo";
 
 const SITE_URL = "https://sambhajinagar-explorer.replit.app";
 
+const categoryMap: Record<string, string> = {
+  cave: "UNESCO cave monument",
+  fort: "historical fort",
+  temple: "sacred temple",
+  mausoleum: "Mughal mausoleum",
+  monument: "heritage monument",
+  garden: "botanical garden",
+  lake: "natural lake",
+  hill: "hill station",
+};
+
 export default function TourDetail() {
   const { id } = useParams<{ id: string }>();
-  const tourId = Number(id);
-  const { data: tour, isLoading } = useGetTour(tourId, {
-    query: { enabled: !!tourId, queryKey: getGetTourQueryKey(tourId) }
-  });
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen pt-32 pb-24 container mx-auto px-4">
-        <div className="w-full h-[50vh] bg-muted/50 animate-pulse rounded-2xl mb-12" aria-hidden="true" />
-        <div className="max-w-4xl mx-auto space-y-6">
-          <div className="h-12 w-2/3 bg-muted/50 animate-pulse rounded-lg" aria-hidden="true" />
-          <div className="h-6 w-1/3 bg-muted/50 animate-pulse rounded-lg" aria-hidden="true" />
-        </div>
-      </div>
-    );
-  }
+  const tour = getTourById(Number(id));
 
   if (!tour) {
     return (
@@ -34,6 +30,8 @@ export default function TourDetail() {
       </div>
     );
   }
+
+  const categoryLabel = categoryMap[tour.category] || tour.category;
 
   const tourSchema = {
     "@context": "https://schema.org",
@@ -72,18 +70,6 @@ export default function TourDetail() {
     }
   };
 
-  const categoryMap: Record<string, string> = {
-    cave: "UNESCO cave monument",
-    fort: "historical fort",
-    temple: "sacred temple",
-    mausoleum: "Mughal mausoleum",
-    monument: "heritage monument",
-    garden: "botanical garden",
-    lake: "natural lake",
-    hill: "hill station"
-  };
-  const categoryLabel = categoryMap[tour.category] || tour.category;
-
   return (
     <>
       <PageSeo
@@ -101,7 +87,7 @@ export default function TourDetail() {
         {/* Hero Image */}
         <div className="relative h-[60vh] min-h-[500px] w-full">
           <img
-            src={tour.imageUrl || "/images/placeholder.png"}
+            src={tour.imageUrl}
             alt={`${tour.name} — ${tour.location}, Maharashtra, India`}
             className="w-full h-full object-cover"
             width="1200"
@@ -115,7 +101,11 @@ export default function TourDetail() {
               {/* Breadcrumb */}
               <nav aria-label="Breadcrumb" className="mb-4">
                 <ol className="flex items-center gap-2 text-sm text-white/70">
-                  <li><Link href="/" className="hover:text-white transition-colors flex items-center gap-1"><Home className="w-3 h-3" aria-hidden="true" />Home</Link></li>
+                  <li>
+                    <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
+                      <Home className="w-3 h-3" aria-hidden="true" />Home
+                    </Link>
+                  </li>
                   <li aria-hidden="true" className="text-white/40">/</li>
                   <li><Link href="/tours" className="hover:text-white transition-colors">Tours</Link></li>
                   <li aria-hidden="true" className="text-white/40">/</li>
@@ -169,7 +159,7 @@ export default function TourDetail() {
                 </p>
               </section>
 
-              {tour.highlights && tour.highlights.length > 0 && (
+              {tour.highlights.length > 0 && (
                 <section>
                   <h2 className="text-3xl font-serif font-bold mb-6 text-foreground">Highlights</h2>
                   <ul className="grid sm:grid-cols-2 gap-4" aria-label={`Highlights of ${tour.name}`}>
