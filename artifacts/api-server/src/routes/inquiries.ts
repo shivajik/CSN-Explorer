@@ -1,6 +1,7 @@
 import { Router, type IRouter } from "express";
 import { db, inquiriesTable } from "@workspace/db";
 import { CreateInquiryBody } from "@workspace/api-zod";
+import { logger } from "../lib/logger";
 
 const router: IRouter = Router();
 
@@ -16,7 +17,7 @@ router.post("/inquiries", async (req, res): Promise<void> => {
     .values(parsed.data)
     .returning();
 
-  req.log.info({ inquiryId: inquiry.id }, "New tour inquiry submitted");
+  logger.info({ inquiryId: inquiry.id }, "New tour inquiry submitted");
   res.status(201).json(inquiry);
 });
 
