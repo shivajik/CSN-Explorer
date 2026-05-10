@@ -11,8 +11,10 @@ const transportOptions = [
   { id: 5, from: "Pune", to: "Chhatrapati Sambhajinagar", vehicleType: "SUV", capacity: 6, pricePerPerson: 1100, duration: "4-5 hours" },
 ];
 
-router.get("/transport", ((_req, res) => {
+const getTransportOptions: RequestHandler = (_req, res) => {
   res.json(transportOptions);
-}) as RequestHandler);
+};
+
+router.get("/transport", getTransportOptions);
 
 export default router;

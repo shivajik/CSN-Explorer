@@ -11,15 +11,15 @@ const tours = [
   { id: 5, name: "Grishneshwar Temple", category: "temple", description: "One of the 12 Jyotirlinga shrines dedicated to Lord Shiva.", location: "Verul, near Ellora", duration: "2 hours", highlights: ["12th Jyotirlinga shrine"], imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Grishneshwar_temple_in_Aurangabad_district.jpg", featured: true, rating: 4.7, price: 0 },
 ];
 
-router.get("/tours", ((_req, res) => {
+const getAllTours: RequestHandler = (_req, res) => {
   res.json(tours);
-}) as RequestHandler);
+};
 
-router.get("/tours/featured", ((_req, res) => {
+const getFeaturedTours: RequestHandler = (_req, res) => {
   res.json(tours.filter((t) => t.featured));
-}) as RequestHandler);
+};
 
-router.get("/tours/:id", ((req, res) => {
+const getTourById: RequestHandler = (req, res) => {
   const id = Number(req.params["id"]);
   const tour = tours.find((t) => t.id === id);
   if (!tour) {
@@ -27,6 +27,10 @@ router.get("/tours/:id", ((req, res) => {
     return;
   }
   res.json(tour);
-}) as RequestHandler);
+};
+
+router.get("/tours", getAllTours);
+router.get("/tours/featured", getFeaturedTours);
+router.get("/tours/:id", getTourById);
 
 export default router;
