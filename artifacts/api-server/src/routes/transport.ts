@@ -1,15 +1,17 @@
 import { Router, type IRouter } from "express";
-import { db, transportOptionsTable } from "@workspace/db";
-import { ListTransportOptionsResponse } from "@workspace/api-zod";
 
 const router: IRouter = Router();
 
-router.get("/transport", async (req, res): Promise<void> => {
-  const options = await db
-    .select()
-    .from(transportOptionsTable)
-    .orderBy(transportOptionsTable.from);
-  res.json(ListTransportOptionsResponse.parse(options));
+const transportOptions = [
+  { id: 1, from: "Mumbai", to: "Chhatrapati Sambhajinagar", vehicleType: "Sedan", capacity: 4, pricePerPerson: 1800, duration: "5-6 hours" },
+  { id: 2, from: "Mumbai", to: "Chhatrapati Sambhajinagar", vehicleType: "SUV", capacity: 6, pricePerPerson: 1400, duration: "5-6 hours" },
+  { id: 3, from: "Mumbai", to: "Chhatrapati Sambhajinagar", vehicleType: "Tempo Traveller", capacity: 12, pricePerPerson: 900, duration: "6-7 hours" },
+  { id: 4, from: "Pune", to: "Chhatrapati Sambhajinagar", vehicleType: "Sedan", capacity: 4, pricePerPerson: 1400, duration: "4-5 hours" },
+  { id: 5, from: "Pune", to: "Chhatrapati Sambhajinagar", vehicleType: "SUV", capacity: 6, pricePerPerson: 1100, duration: "4-5 hours" },
+];
+
+router.get("/transport", (_req, res): void => {
+  res.json(transportOptions);
 });
 
 export default router;

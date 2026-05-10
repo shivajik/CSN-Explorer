@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { MapPin, Clock, Star } from "lucide-react";
-import type { Tour } from "@workspace/api-client-react";
+import type { Tour } from "@/data/tours";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 

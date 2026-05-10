@@ -1,47 +1,31 @@
 import { Router, type IRouter } from "express";
-import { eq } from "drizzle-orm";
-import { db, toursTable } from "@workspace/db";
-import {
-  GetTourParams,
-  GetTourResponse,
-  ListToursResponse,
-  ListFeaturedToursResponse,
-} from "@workspace/api-zod";
 
 const router: IRouter = Router();
 
-router.get("/tours", async (req, res): Promise<void> => {
-  const tours = await db.select().from(toursTable).orderBy(toursTable.name);
-  res.json(ListToursResponse.parse(tours));
+const tours = [
+  { id: 1, name: "Ajanta Caves", category: "cave", description: "A UNESCO World Heritage Site featuring 30 rock-cut Buddhist cave monuments.", location: "Ajanta, Chhatrapati Sambhajinagar District", duration: "Full Day (6-8 hrs)", highlights: ["UNESCO World Heritage Site", "30 rock-cut caves", "Ancient Buddhist paintings"], imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Ajanta_%2863%29.jpg", featured: true, rating: 4.8, price: 1200 },
+  { id: 2, name: "Ellora Caves", category: "cave", description: "UNESCO World Heritage Site showcasing 34 monasteries and temples.", location: "Ellora, 30 km from Chhatrapati Sambhajinagar", duration: "Full Day (7-8 hrs)", highlights: ["UNESCO World Heritage Site", "Kailasa Temple monolith"], imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Kailash_Temple%2C_Ellora.jpg", featured: true, rating: 4.9, price: 1100 },
+  { id: 3, name: "Daulatabad Fort", category: "fort", description: "One of the most formidable forts in India, atop a 200-metre conical hill.", location: "Daulatabad, 15 km from Chhatrapati Sambhajinagar", duration: "3-4 hours", highlights: ["900-year-old fortification", "Panoramic hilltop views"], imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/00/Daulatabad_Fort.jpg", featured: true, rating: 4.5, price: 800 },
+  { id: 4, name: "Bibi Ka Maqbara", category: "mausoleum", description: "The Taj of the Deccan, built in 1678 by Azam Shah.", location: "Chhatrapati Sambhajinagar City", duration: "2-3 hours", highlights: ["Taj Mahal of the Deccan", "Mughal architecture"], imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/78/The_Tomb_of_Dilras_Banu_Begum.jpg", featured: true, rating: 4.6, price: 500 },
+  { id: 5, name: "Grishneshwar Temple", category: "temple", description: "One of the 12 Jyotirlinga shrines dedicated to Lord Shiva.", location: "Verul, near Ellora", duration: "2 hours", highlights: ["12th Jyotirlinga shrine"], imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Grishneshwar_temple_in_Aurangabad_district.jpg", featured: true, rating: 4.7, price: 0 },
+];
+
+router.get("/tours", (_req, res): void => {
+  res.json(tours);
 });
 
-router.get("/tours/featured", async (req, res): Promise<void> => {
-  const tours = await db
-    .select()
-    .from(toursTable)
-    .where(eq(toursTable.featured, true));
-  res.json(ListFeaturedToursResponse.parse(tours));
+router.get("/tours/featured", (_req, res): void => {
+  res.json(tours.filter((t) => t.featured));
 });
 
-router.get("/tours/:id", async (req, res): Promise<void> => {
-  const raw = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-  const params = GetTourParams.safeParse({ id: raw });
-  if (!params.success) {
-    res.status(400).json({ error: params.error.message });
-    return;
-  }
-
-  const [tour] = await db
-    .select()
-    .from(toursTable)
-    .where(eq(toursTable.id, params.data.id));
-
+router.get("/tours/:id", (req, res): void => {
+  const id = Number(req.params.id);
+  const tour = tours.find((t) => t.id === id);
   if (!tour) {
     res.status(404).json({ error: "Tour not found" });
     return;
   }
-
-  res.json(GetTourResponse.parse(tour));
+  res.json(tour);
 });
 
 export default router;
