@@ -1,9 +1,10 @@
-import express, { type Express, type Request, type Response, type NextFunction } from "express";
+import express from "express";
+import type { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
-const app: Express = express();
+const app = express();
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   const start = Date.now();
