@@ -104,7 +104,7 @@ export function ContactForm({ defaultTourId, defaultTourName, onSuccess }: Conta
               <FormItem>
                 <FormLabel>Phone Number *</FormLabel>
                 <FormControl>
-                  <Input placeholder="+91 98765 43210" {...field} data-testid="input-phone" />
+                  <Input placeholder="+91-9923322790" {...field} data-testid="input-phone" />
                 </FormControl>
                 <FormMessage />
               </FormItem>

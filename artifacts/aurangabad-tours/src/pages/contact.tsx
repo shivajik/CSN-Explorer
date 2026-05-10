@@ -24,8 +24,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-lg mb-1">Phone</h4>
-                    <p className="text-muted-foreground">+91 98765 43210</p>
-                    <p className="text-muted-foreground">+91 12345 67890</p>
+                    <p className="text-muted-foreground">+91-9923322790</p>
                   </div>
                 </div>
                 

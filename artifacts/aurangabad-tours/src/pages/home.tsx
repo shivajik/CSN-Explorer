@@ -13,8 +13,8 @@ export default function Home() {
       <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-black">
           <img
-            src="/images/hero.png"
-            alt="Bibi Ka Maqbara at Golden Hour"
+            src="https://upload.wikimedia.org/wikipedia/commons/7/78/The_Tomb_of_Dilras_Banu_Begum.jpg"
+            alt="Bibi Ka Maqbara - Taj of the Deccan"
             className="w-full h-full object-cover opacity-60 animate-in fade-in duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-background/95" />
@@ -126,7 +126,7 @@ export default function Home() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src="/images/daulatabad.png" 
+                  src="https://upload.wikimedia.org/wikipedia/commons/0/00/Daulatabad_Fort.jpg" 
                   alt="Daulatabad Fort" 
                   className="w-full h-full object-cover"
                 />
