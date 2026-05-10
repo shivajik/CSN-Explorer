@@ -1,15 +1,13 @@
 import express from "express";
-import type { RequestHandler } from "express";
-import type { ServerResponse } from "http";
 import cors from "cors";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app = express();
 
-const requestLogger: RequestHandler = (req, res, next) => {
+app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
   const start = Date.now();
-  (res as unknown as ServerResponse).on("finish", () => {
+  res.on("finish", () => {
     logger.info({
       method: req.method,
       url: req.url.split("?")[0],
@@ -18,9 +16,13 @@ const requestLogger: RequestHandler = (req, res, next) => {
     });
   });
   next();
-};
+});
 
-const rootHandler: RequestHandler = (_req, res) => {
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.get("/", ((_req: express.Request, res: express.Response) => {
   res.json({
     name: "CSN Explorer API",
     version: "1.0.0",
@@ -33,13 +35,8 @@ const rootHandler: RequestHandler = (_req, res) => {
       "POST /api/inquiries",
     ],
   });
-};
+}) as express.RequestHandler);
 
-app.use(requestLogger);
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.get("/", rootHandler);
 app.use("/api", router);
 
 export default app;

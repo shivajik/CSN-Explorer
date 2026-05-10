@@ -1,5 +1,5 @@
 import { Router } from "express";
-import type { RequestHandler } from "express";
+import type express from "express";
 
 const router = Router();
 
@@ -11,15 +11,15 @@ const tours = [
   { id: 5, name: "Grishneshwar Temple", category: "temple", description: "One of the 12 Jyotirlinga shrines dedicated to Lord Shiva.", location: "Verul, near Ellora", duration: "2 hours", highlights: ["12th Jyotirlinga shrine"], imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Grishneshwar_temple_in_Aurangabad_district.jpg", featured: true, rating: 4.7, price: 0 },
 ];
 
-const getAllTours: RequestHandler = (_req, res) => {
+router.get("/tours", (_req: express.Request, res: express.Response) => {
   res.json(tours);
-};
+});
 
-const getFeaturedTours: RequestHandler = (_req, res) => {
+router.get("/tours/featured", (_req: express.Request, res: express.Response) => {
   res.json(tours.filter((t) => t.featured));
-};
+});
 
-const getTourById: RequestHandler = (req, res) => {
+router.get("/tours/:id", (req: express.Request, res: express.Response) => {
   const id = Number(req.params["id"]);
   const tour = tours.find((t) => t.id === id);
   if (!tour) {
@@ -27,10 +27,6 @@ const getTourById: RequestHandler = (req, res) => {
     return;
   }
   res.json(tour);
-};
-
-router.get("/tours", getAllTours);
-router.get("/tours/featured", getFeaturedTours);
-router.get("/tours/:id", getTourById);
+});
 
 export default router;

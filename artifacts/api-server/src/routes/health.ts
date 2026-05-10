@@ -1,12 +1,10 @@
 import { Router } from "express";
-import type { RequestHandler } from "express";
+import type express from "express";
 
 const router = Router();
 
-const healthHandler: RequestHandler = (_req, res) => {
+router.get("/healthz", (_req: express.Request, res: express.Response) => {
   res.json({ status: "ok" });
-};
-
-router.get("/healthz", healthHandler);
+});
 
 export default router;
