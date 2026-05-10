@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Aurangabad Tours & Travel"
+version = "1.0.0"
+id = "artifacts/aurangabad-tours"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25422
+
+[services.development]
+run = "pnpm --filter @workspace/aurangabad-tours run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/aurangabad-tours", "run", "build" ]
+publicDir = "artifacts/aurangabad-tours/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25422"
+BASE_PATH = "/"

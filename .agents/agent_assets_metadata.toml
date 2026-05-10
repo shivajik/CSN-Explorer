@@ -1,0 +1,38 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "FKTea43EqWPYHHgzoky2z"
+uri = "file://artifacts/aurangabad-tours/public/images/hero.png"
+type = "image"
+title = "Hero Bibi Ka Maqbara"
+
+[[generated]]
+id = "oBsU-_DzEnYsIeRqOdkQV"
+uri = "file://artifacts/aurangabad-tours/public/images/ajanta.png"
+type = "image"
+title = "Ajanta Caves painting"
+
+[[generated]]
+id = "X3d0YsyVLQZIG_DnxzLPq"
+uri = "file://artifacts/aurangabad-tours/public/images/ellora.png"
+type = "image"
+title = "Ellora Kailasa temple"
+
+[[generated]]
+id = "GWSkAHrOQ7TRzfxpOB-lg"
+uri = "file://artifacts/aurangabad-tours/public/images/daulatabad.png"
+type = "image"
+title = "Daulatabad Fort"
+
+[[generated]]
+id = "V4V6ec5lYfduUTajLDGPZ"
+uri = "file://artifacts/aurangabad-tours/public/images/panchakki.png"
+type = "image"
+title = "Panchakki water mill"
+
+[[generated]]
+id = "ePRqZRJ6ykB0dSK9aUDB_"
+uri = "file://artifacts/aurangabad-tours/public/images/grishneshwar.png"
+type = "image"
+title = "Grishneshwar Temple"

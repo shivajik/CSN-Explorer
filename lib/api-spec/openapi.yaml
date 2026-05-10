@@ -3,13 +3,19 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Aurangabad Tours & Travel API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: tours
+    description: Tourist places and tours
+  - name: inquiries
+    description: Tour contact inquiries
+  - name: transport
+    description: Transport pickup/drop options
 paths:
   /healthz:
     get:
@@ -24,6 +30,102 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /tours:
+    get:
+      operationId: listTours
+      tags: [tours]
+      summary: List all tourist places
+      responses:
+        "200":
+          description: List of tours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Tour"
+
+  /tours/featured:
+    get:
+      operationId: listFeaturedTours
+      tags: [tours]
+      summary: Get featured/highlighted tours
+      responses:
+        "200":
+          description: Featured tours
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Tour"
+
+  /tours/{id}:
+    get:
+      operationId: getTour
+      tags: [tours]
+      summary: Get a specific tour by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Tour details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tour"
+        "404":
+          description: Tour not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /inquiries:
+    post:
+      operationId: createInquiry
+      tags: [inquiries]
+      summary: Submit a tour inquiry / contact form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InquiryInput"
+      responses:
+        "201":
+          description: Inquiry submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Inquiry"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /transport:
+    get:
+      operationId: listTransportOptions
+      tags: [transport]
+      summary: List available pickup/drop transport routes
+      responses:
+        "200":
+          description: Transport options
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TransportOption"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +136,117 @@ components:
       required:
         - status
 
+    Tour:
+      type: object
+      required: [id, name, category, description, location, duration, highlights, imageUrl, featured]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        category:
+          type: string
+          description: "cave, fort, temple, garden, lake, hill, mosque, mausoleum"
+        description:
+          type: string
+        location:
+          type: string
+        duration:
+          type: string
+        highlights:
+          type: array
+          items:
+            type: string
+        imageUrl:
+          type: string
+        featured:
+          type: boolean
+        rating:
+          type: ["number", "null"]
+        price:
+          type: ["number", "null"]
+
+    InquiryInput:
+      type: object
+      required: [name, email, phone, tourId, message]
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+          minLength: 10
+        tourId:
+          type: ["integer", "null"]
+          description: ID of the specific tour, null if general inquiry
+        tourName:
+          type: ["string", "null"]
+        pickupLocation:
+          type: ["string", "null"]
+          description: "Mumbai, Pune, or Aurangabad"
+        travelDate:
+          type: ["string", "null"]
+        groupSize:
+          type: ["integer", "null"]
+        message:
+          type: string
+          minLength: 1
+
+    Inquiry:
+      type: object
+      required: [id, name, email, phone, message, createdAt]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        tourId:
+          type: ["integer", "null"]
+        tourName:
+          type: ["string", "null"]
+        pickupLocation:
+          type: ["string", "null"]
+        travelDate:
+          type: ["string", "null"]
+        groupSize:
+          type: ["integer", "null"]
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    TransportOption:
+      type: object
+      required: [id, from, to, vehicleType, capacity, pricePerPerson, duration]
+      properties:
+        id:
+          type: integer
+        from:
+          type: string
+        to:
+          type: string
+        vehicleType:
+          type: string
+        capacity:
+          type: integer
+        pricePerPerson:
+          type: number
+        duration:
+          type: string
+        description:
+          type: ["string", "null"]
+
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
