@@ -1,6 +1,6 @@
-import { Router, type IRouter } from "express";
+import { Router } from "express";
 
-const router: IRouter = Router();
+const router = Router();
 
 const transportOptions = [
   { id: 1, from: "Mumbai", to: "Chhatrapati Sambhajinagar", vehicleType: "Sedan", capacity: 4, pricePerPerson: 1800, duration: "5-6 hours" },
@@ -10,7 +10,7 @@ const transportOptions = [
   { id: 5, from: "Pune", to: "Chhatrapati Sambhajinagar", vehicleType: "SUV", capacity: 6, pricePerPerson: 1100, duration: "4-5 hours" },
 ];
 
-router.get("/transport", (_req, res): void => {
+router.get("/transport", (_req, res) => {
   res.json(transportOptions);
 });
 

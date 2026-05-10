@@ -1,9 +1,9 @@
-import { Router, type IRouter } from "express";
+import { Router } from "express";
 import { logger } from "../lib/logger";
 
-const router: IRouter = Router();
+const router = Router();
 
-router.post("/inquiries", (req, res): void => {
+router.post("/inquiries", (req, res) => {
   const { name, email, phone } = req.body ?? {};
   if (!name || !email || !phone) {
     res.status(400).json({ error: "name, email, and phone are required" });

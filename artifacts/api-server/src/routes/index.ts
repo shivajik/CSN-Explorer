@@ -1,10 +1,10 @@
-import { Router, type IRouter } from "express";
+import { Router } from "express";
 import healthRouter from "./health";
 import toursRouter from "./tours";
 import inquiriesRouter from "./inquiries";
 import transportRouter from "./transport";
 
-const router: IRouter = Router();
+const router = Router();
 
 router.use(healthRouter);
 router.use(toursRouter);

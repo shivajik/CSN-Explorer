@@ -1,6 +1,6 @@
-import { Router, type IRouter } from "express";
+import { Router } from "express";
 
-const router: IRouter = Router();
+const router = Router();
 
 const tours = [
   { id: 1, name: "Ajanta Caves", category: "cave", description: "A UNESCO World Heritage Site featuring 30 rock-cut Buddhist cave monuments.", location: "Ajanta, Chhatrapati Sambhajinagar District", duration: "Full Day (6-8 hrs)", highlights: ["UNESCO World Heritage Site", "30 rock-cut caves", "Ancient Buddhist paintings"], imageUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Ajanta_%2863%29.jpg", featured: true, rating: 4.8, price: 1200 },
@@ -10,16 +10,16 @@ const tours = [
   { id: 5, name: "Grishneshwar Temple", category: "temple", description: "One of the 12 Jyotirlinga shrines dedicated to Lord Shiva.", location: "Verul, near Ellora", duration: "2 hours", highlights: ["12th Jyotirlinga shrine"], imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Grishneshwar_temple_in_Aurangabad_district.jpg", featured: true, rating: 4.7, price: 0 },
 ];
 
-router.get("/tours", (_req, res): void => {
+router.get("/tours", (_req, res) => {
   res.json(tours);
 });
 
-router.get("/tours/featured", (_req, res): void => {
+router.get("/tours/featured", (_req, res) => {
   res.json(tours.filter((t) => t.featured));
 });
 
-router.get("/tours/:id", (req, res): void => {
-  const id = Number(req.params.id);
+router.get("/tours/:id", (req, res) => {
+  const id = Number(req.params["id"]);
   const tour = tours.find((t) => t.id === id);
   if (!tour) {
     res.status(404).json({ error: "Tour not found" });

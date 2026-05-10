@@ -1,12 +1,11 @@
 import express from "express";
-import type { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app = express();
 
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req, res, next) => {
   const start = Date.now();
   res.on("finish", () => {
     logger.info({
@@ -22,6 +21,21 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/", (_req, res) => {
+  res.json({
+    name: "CSN Explorer API",
+    version: "1.0.0",
+    endpoints: [
+      "GET /api/healthz",
+      "GET /api/tours",
+      "GET /api/tours/featured",
+      "GET /api/tours/:id",
+      "GET /api/transport",
+      "POST /api/inquiries",
+    ],
+  });
+});
 
 app.use("/api", router);
 
