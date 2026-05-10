@@ -8,6 +8,8 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const isHome = location === "/";
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -15,6 +17,9 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // On non-home pages the navbar always appears solid (no dark hero beneath it)
+  const solidNav = !isHome || isScrolled;
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -27,7 +32,7 @@ export function Navbar() {
     <header
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent",
-        isScrolled
+        solidNav
           ? "bg-background/95 backdrop-blur-sm border-border shadow-sm py-3"
           : "bg-transparent py-5"
       )}
@@ -35,8 +40,8 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group" data-testid="nav-logo">
-            <Compass className={cn("w-8 h-8 transition-colors", isScrolled ? "text-primary" : "text-primary md:text-white")} />
-            <span className={cn("font-serif font-bold text-xl tracking-tight transition-colors", isScrolled ? "text-foreground" : "text-foreground md:text-white")}>
+            <Compass className={cn("w-8 h-8 transition-colors", solidNav ? "text-primary" : "text-primary md:text-white")} />
+            <span className={cn("font-serif font-bold text-xl tracking-tight transition-colors", solidNav ? "text-foreground" : "text-foreground md:text-white")}>
               Sambhajinagar Explorer
             </span>
           </Link>
@@ -52,7 +57,7 @@ export function Navbar() {
                   "text-sm font-medium transition-colors hover:text-primary relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:transition-transform hover:after:scale-x-100",
                   location === link.href
                     ? "text-primary after:scale-x-100"
-                    : isScrolled ? "text-foreground/80" : "text-white/90"
+                    : solidNav ? "text-foreground/80" : "text-white/90"
                 )}
               >
                 {link.label}
@@ -62,7 +67,7 @@ export function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className={cn("md:hidden p-2", isScrolled ? "text-foreground" : "text-primary")}
+            className={cn("md:hidden p-2", solidNav ? "text-foreground" : "text-primary")}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             data-testid="nav-mobile-toggle"
           >
