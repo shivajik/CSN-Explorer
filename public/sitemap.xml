@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/7/78/The_Tomb_of_Dilras_Banu_Begum.jpg</image:loc>
+      <image:title>Bibi Ka Maqbara - Taj of the Deccan, Chhatrapati Sambhajinagar</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/1</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/c/c3/Ajanta_%2863%29.jpg</image:loc>
+      <image:title>Ajanta Caves - UNESCO World Heritage Site, Maharashtra</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/2</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/9/9e/Kailash_Temple%2C_Ellora.jpg</image:loc>
+      <image:title>Ellora Caves - Kailash Temple, UNESCO World Heritage Site</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/3</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/0/00/Daulatabad_Fort.jpg</image:loc>
+      <image:title>Daulatabad Fort - Historical Fort near Chhatrapati Sambhajinagar</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/4</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/7/78/The_Tomb_of_Dilras_Banu_Begum.jpg</image:loc>
+      <image:title>Bibi Ka Maqbara - Taj of the Deccan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/5</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/a/ad/Grishneshwar_temple_in_Aurangabad_district.jpg</image:loc>
+      <image:title>Grishneshwar Temple - 12th Jyotirlinga</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/6</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/7</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/8</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/9</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/10</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/11</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/12</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/13</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/14</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/tours/15</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/transport</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://sambhajinagar-explorer.replit.app/contact</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
